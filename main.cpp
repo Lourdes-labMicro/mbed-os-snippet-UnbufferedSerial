@@ -6,7 +6,7 @@
 #include "mbed.h"
 
 // Create a DigitalOutput object to toggle an LED whenever data is received.
- DigitalOut led(LED1);
+ DigitalOut led(LED2);
 
 // Create a UnbufferedSerial object with a default baud rate.
  UnbufferedSerial serial_port(USBTX, USBRX);
@@ -20,15 +20,17 @@ int main(void)
         /* parity */ SerialBase::None,
         /* stop bit */ 1
     );
+
     char c;
-    while (true){
+
+    while (true) {
         //Read the data
-        if (serial_port.read(&c,1){
+        if (serial_port.read(&c,1)) {
             // toggle the LED.
             led = !led;
             // send a # back to the terminal.
             serial_port.write("#",1);
-        })
+        }
     }
 
     
